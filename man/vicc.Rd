@@ -22,5 +22,5 @@ vicc(
 
 }
 \description{
-Varying Intraclass Correlation Coefficients
+test
 }

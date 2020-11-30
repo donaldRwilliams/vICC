@@ -1,5 +1,7 @@
 #' Varying Intraclass Correlation Coefficients
 #'
+#' @description test
+#'
 #' @param y
 #' @param group
 #' @param model
