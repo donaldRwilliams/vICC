@@ -22,5 +22,5 @@ vicc(
 
 }
 \description{
-test
+testing
 }
