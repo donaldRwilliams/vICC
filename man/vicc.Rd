@@ -7,7 +7,7 @@
 vicc(
   y,
   group,
-  model = "pick_group",
+  type = "pick_group",
   iter = 5000,
   chains = 2,
   burnin = 500,
@@ -16,11 +16,50 @@ vicc(
 )
 }
 \arguments{
-\item{prior_prob}{}
+\item{y}{Numeric vector. The outcome variable.}
+
+\item{group}{Numeric vector. The grouping variable (e.g., subjects).}
+
+\item{type}{Character string. Which model should be fitted
+(defaults to \code{pick_group})? The options are
+described in \code{Details}.}
+
+\item{iter}{Numeric. The number of posterior samples per chain (excluding \code{burnin}).}
+
+\item{chains}{Numeric. The number of chains (defaults to \code{2}).}
+
+\item{burnin}{Numeric. The number of burnin samples, which are discarded
+(defaults to \code{500}).}
+
+\item{prior_scale}{Numeric. The prior distribution scale parameter
+(defaults to \code{1}). Note the prior is a
+half student-t distribution with 10 degrees of freedom.}
+
+\item{prior_prob}{Numeric. The prior inclusion probability (defaults to \code{0.5}). This
+is used for \code{type = "pick_tau"} or \code{type = "pick_group"} and ignored
+otherwise.}
 }
 \value{
-
+An object of class \code{vicc}.
 }
 \description{
-Varying Intraclass Correlation Coefficients
+Compute varying intraclass correlation coefficients
+}
+\examples{
+\donttest{
+# congruent trials
+congruent <- subset(flanker, cond == 0)
+
+# subset 25 from each group
+dat <- congruent[unlist(tapply(1:nrow(congruent),
+                            congruent$id,
+                            head, 25)), ]
+
+# fit model
+fit <- vicc(y  = dat$rt,
+            group = dat$id,
+            iter = 250,
+            burnin = 10,
+            type =  "customary")
+}
 }

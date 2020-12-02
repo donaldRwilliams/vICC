@@ -1,21 +1,55 @@
 #' Varying Intraclass Correlation Coefficients
 #'
+#' @description Compute varying intraclass correlation coefficients
 #'
-#' @param y
-#' @param group
-#' @param model
-#' @param iter
-#' @param chains
-#' @param burnin
-#' @param prior_scale
-#' @param prior_prob
+#' @param y Numeric vector. The outcome variable.
 #'
-#' @return
+#' @param group Numeric vector. The grouping variable (e.g., subjects).
+#'
+#' @param type Character string. Which model should be fitted
+#'              (defaults to \code{pick_group})? The options are
+#'              described in \code{Details}.
+#'
+#' @param iter Numeric. The number of posterior samples per chain (excluding \code{burnin}).
+#'
+#' @param chains Numeric. The number of chains (defaults to \code{2}).
+#'
+#' @param burnin Numeric. The number of burnin samples, which are discarded
+#'               (defaults to \code{500}).
+#'
+#' @param prior_scale Numeric. The prior distribution scale parameter
+#'                    (defaults to \code{1}). Note the prior is a
+#'                    half student-t distribution with 10 degrees of freedom.
+#'
+#' @param prior_prob Numeric. The prior inclusion probability (defaults to \code{0.5}). This
+#'                   is used for \code{type = "pick_tau"} or \code{type = "pick_group"} and ignored
+#'                   otherwise.
+#'
+#' @return An object of class \code{vicc}.
+#'
+#' @importFrom rjags jags.model coda.samples
+#'
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' # congruent trials
+#' congruent <- subset(flanker, cond == 0)
+#'
+#' # subset 25 from each group
+#' dat <- congruent[unlist(tapply(1:nrow(congruent),
+#'                             congruent$id,
+#'                             head, 25)), ]
+#'
+#' # fit model
+#' fit <- vicc(y  = dat$rt,
+#'             group = dat$id,
+#'             iter = 250,
+#'             burnin = 10,
+#'             type =  "customary")
+#'}
 vicc <- function(y, group,
-                 model = "pick_group",
+                 type = "pick_group",
                  iter = 5000,
                  chains = 2,
                  burnin = 500,
@@ -32,7 +66,8 @@ vicc <- function(y, group,
   J <- length(unique(ID))
 
 
-  if(model == "pick_group") {
+  if(type == "pick_group") {
+
     model <-
       rjags::jags.model(
         file = base::textConnection(ICC_pick_id),
@@ -61,10 +96,101 @@ vicc <- function(y, group,
         "beta_l"
       )
     )
+  } else if (type == "pick_tau"){
+
+    model <- rjags::jags.model(
+      base::textConnection(ICC_pick_tau),
+      n.chains = chains,
+      inits = list(fe_mu = mean(y)),
+      data = list(
+        y = y,
+        ID = ID,
+        J = J,
+        N = N,
+        prior_scale = prior_scale,
+        inc_prob = prior_prob
+      )
+    )
+
+    # fit for motivating example
+    fit <- coda.samples(
+      model = model,
+      n.iter = iter + burnin,
+      variable.names = c(
+        "fe_mu",
+        "fe_sd",
+        "tau_mu",
+        "pick_tau",
+        "tau_sd",
+        "beta_s",
+        "beta_l"
+      )
+    )
+
+
+  } else if(type == "pick_none"){
+
+
+    model <- rjags::jags.model(
+      base::textConnection(ICC_lsm),
+      n.chains = chains,
+      inits = list(fe_mu = mean(y)),
+      data = list(
+        y = y,
+        ID = ID,
+        J = J,
+        N = N,
+        prior_scale = prior_scale
+      )
+    )
+
+    fit <- rjags::coda.samples(
+      model = model,
+      n.iter = iter + burnin,
+      variable.names = c("fe_mu",
+                         "fe_sd",
+                         "tau_mu",
+                         "tau_sd",
+                         "beta_s",
+                         "beta_l")
+    )
+  } else if(type == "customary"){
+
+    model <- rjags::jags.model(
+      file = textConnection(ICC_customary),
+      n.chains = chains,
+      inits = list(fe_mu = mean(y)),
+      data = list(
+        y = y,
+        ID = ID,
+        J = J,
+        N = N,
+        prior_scale = prior_scale
+      )
+    )
+
+    fit <- rjags::coda.samples(
+      model = model,
+      n.iter = iter + burnin,
+      variable.names = c("sigma",
+                         "beta",
+                         "tau_mu",
+                         "fe_mu")
+    )
+
+    } else {
+      stop("model not supported. see documentation")
   }
 
+  returned_object <- list(fit = fit,
+                          type = type,
+                          model = model,
+                          chains = chains,
+                          iter = iter,
+                          burnin = burnin)
 
-  return(fit)
+  class(returned_object) <- "vicc"
+  return(returned_object)
 
 
 }
