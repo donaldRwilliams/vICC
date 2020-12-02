@@ -12,8 +12,13 @@
 #'
 #' @export
 #'
+#' @name coef.vicc
+#'
 #' @examples
 #' \donttest{
+#'
+#' flanker <- vICC::flanker
+#'
 #' # congruent trials
 #' congruent <- subset(flanker, cond == 0)
 #'
