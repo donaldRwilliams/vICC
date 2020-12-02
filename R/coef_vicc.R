@@ -16,11 +16,9 @@
 #'
 #' @examples
 #' \donttest{
-#'
-#' flanker <- vICC::flanker
-#'
+#' Y <- flanker
 #' # congruent trials
-#' congruent <- subset(flanker, cond == 0)
+#' congruent <- subset(Y, cond == 0)
 #'
 #' # subset 25 from each group
 #' dat <- congruent[unlist(tapply(1:nrow(congruent),
