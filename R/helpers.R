@@ -1,5 +1,3 @@
-#' @importFrom nlme ranef
-#' @importFrom stats coef
 #' @importFrom stats quantile sd
 #' @importFrom methods is
 ICC_lsm <- "model{

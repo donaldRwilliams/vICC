@@ -1,7 +1,9 @@
 #' @title Extract the Group-Specific Parameters
 #'
 #' @description Extract the group-specific parameter estimates.
-#
+#'
+#' @aliases coef
+#'
 #' @param object An object of class \code{vicc}
 #'
 #' @param cred Numeric. Credible interval width (defaults to \code{0.90})
@@ -11,8 +13,6 @@
 #' @return An array with the summarized parameters
 #'
 #' @export
-#'
-#' @name coef.vicc
 #'
 #' @examples
 #' \donttest{
@@ -128,6 +128,8 @@ coef.vicc <- function(object,
 
 
     }
+
+  array_collect <- round(array_collect, 10)
 
   dimnames(array_collect)[[2]] <-  c("Post.mean",
                                      "Post.sd",
