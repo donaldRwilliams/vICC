@@ -10,6 +10,7 @@ License: GPL-2
 Depends: R (>= 4.0.0)
 Imports: 
   coda (>= 0.19-4),
+  ggplot2,
   methods,
   nlme,
   Rdpack (>= 0.11-1),

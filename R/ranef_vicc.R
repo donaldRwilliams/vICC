@@ -139,6 +139,8 @@ ranef.vicc <- function(object,
                                      "Cred.lb",
                                      "Cred.ub")
 
-  return(array_collect)
+  returned_object <- list(group = array_collect)
+  class(returned_object) <- "group_parameters"
+  return(returned_object)
 
 }

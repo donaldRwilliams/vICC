@@ -3,7 +3,7 @@
 \name{coef.vicc}
 \alias{coef.vicc}
 \alias{coef}
-\title{Extract the Group-Specific Parameters}
+\title{Extract the Group-Specific Coefficients}
 \usage{
 \method{coef}{vicc}(object, cred = 0.9, ...)
 }
@@ -18,7 +18,8 @@
 An array with the summarized parameters
 }
 \description{
-Extract the group-specific parameter estimates.
+Extract the group-specific coefficients
+             (fixed effect + random effect).
 }
 \examples{
 \donttest{

@@ -96,7 +96,8 @@ vicc <- function(y, group,
         "pick_id",
         "tau_sd",
         "beta_s",
-        "beta_l"
+        "beta_l",
+        "rho12"
       )
     )
   } else if (type == "pick_tau"){
@@ -126,7 +127,8 @@ vicc <- function(y, group,
         "pick_tau",
         "tau_sd",
         "beta_s",
-        "beta_l"
+        "beta_l",
+        "rho12"
       )
     )
 
@@ -155,7 +157,8 @@ vicc <- function(y, group,
                          "tau_mu",
                          "tau_sd",
                          "beta_s",
-                         "beta_l")
+                         "beta_l",
+                         "rho12")
     )
   } else if(type == "customary"){
 

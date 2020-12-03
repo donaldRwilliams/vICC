@@ -1,6 +1,7 @@
-#' @title Extract the Group-Specific Parameters
+#' @title Extract the Group-Specific Coefficients
 #'
-#' @description Extract the group-specific parameter estimates.
+#' @description Extract the group-specific coefficients
+#'              (fixed effect + random effect).
 #'
 #' @aliases coef
 #'
@@ -43,32 +44,49 @@ coef.vicc <- function(object,
   ub <-  1 - lb
   J <- object$model$data()$J
 
-  if(object$type == "customary"){
+  if (object$type == "customary") {
+    obs_per_group <- tapply(object$model$data()$ID,
+                            object$model$data()$ID,
+                            length)
     samps <- posterior_samples(object)
-    array_collect <- array(0, dim = c(J, 4, 2))
+    array_collect <- array(0, dim = c(J, 4, 3))
     dimnames(array_collect)[[1]] <- 1:J
-    dimnames(array_collect)[[3]] <- c("mean", "icc1")
+    dimnames(array_collect)[[3]] <- c("mean", "icc1", "icc2")
     ranefs <- samps[paste0("beta[", 1:J, "]")]
     post_mean <- apply(ranefs, 2, mean)
     post_sd <- apply(ranefs, 2, sd)
     post_cred <- apply(ranefs, 2, quantile, probs = c(lb, ub))
-    array_collect[,,1] <- cbind(post_mean, post_sd,  t(post_cred))
+    array_collect[, , 1] <- cbind(post_mean, post_sd,  t(post_cred))
 
 
-    icc <- (samps$tau_mu^2 / (samps$tau_mu^2 + samps$sigma^2))
+    icc <- (samps$tau_mu ^ 2 / (samps$tau_mu ^ 2 + samps$sigma ^ 2))
     post_mean_icc <- mean(icc)
     post_sd_icc <- sd(icc)
     post_cred_icc <- quantile(icc, probs = c(lb, ub))
 
+  array_collect[, , 2] <-  matrix(rep(cbind(
+      post_mean_icc,
+      post_sd_icc,
+      t(post_cred_icc)
+    ), J),
+    nrow = J,
+    ncol = 4,
+    byrow = TRUE)
 
-    array_collect[,,2] <-  matrix(rep(cbind(post_mean_icc,
-                                            post_sd_icc,
-                                            t(post_cred_icc)), J),
-                                  nrow = J,
-                                  ncol = 4,
-                                  byrow =TRUE)
-    } else {
+  icc <- (samps$tau_mu ^ 2 / (samps$tau_mu ^ 2 + (samps$sigma ^2) / mean(obs_per_group)))
+  post_mean_icc <- mean(icc)
+  post_sd_icc <- sd(icc)
+  post_cred_icc <- quantile(icc, probs = c(lb, ub))
 
+  array_collect[, , 3] <-  matrix(rep(cbind(
+    post_mean_icc,
+    post_sd_icc,
+    t(post_cred_icc)
+  ), J),
+  nrow = J,
+  ncol = 4,
+  byrow = TRUE)
+  } else {
     samps <- posterior_samples(object)
 
     obs_per_group <- tapply(object$model$data()$ID,
@@ -87,45 +105,54 @@ coef.vicc <- function(object,
     post_mean_l <- apply(ranefs_l, 2, mean)
     post_sd_l <- apply(ranefs_l, 2, sd)
     post_cred_l <- apply(ranefs_l, 2, quantile, probs = c(lb, ub))
-    array_collect[,,1] <- cbind(post_mean_l,
-                                post_sd_l,
-                                t(post_cred_l))
+    array_collect[, , 1] <- cbind(post_mean_l,
+                                  post_sd_l,
+                                  t(post_cred_l))
 
     # scale
     ranefs_s <- exp(samps[paste0("beta_s[", 1:J, "]")])
     post_mean_s <- apply(ranefs_s, 2, mean)
     post_sd_s <- apply(ranefs_s, 2, sd)
     post_cred_s <- apply(ranefs_s, 2, quantile, probs = c(lb, ub))
-    array_collect[,,2] <- cbind(post_mean_s, post_sd_s,
-                                t(post_cred_s))
+    array_collect[, , 2] <- cbind(post_mean_s, post_sd_s,
+                                  t(post_cred_s))
 
     # ICC
-    ranefs_icc1 <- apply(ranefs_s, MARGIN = 2, FUN = function(x) {
-      samps$tau_mu^2  /  (samps$tau_mu^2  + x^2)
-      })
+    ranefs_icc1 <- apply(
+      ranefs_s,
+      MARGIN = 2,
+      FUN = function(x) {
+        samps$tau_mu ^ 2  /  (samps$tau_mu ^ 2  + x ^ 2)
+      }
+    )
 
     post_mean_icc1 <- apply(ranefs_icc1, 2, mean)
     post_sd_icc1 <- apply(ranefs_icc1, 2, sd)
-    post_cred_icc1 <- apply(ranefs_icc1, 2, quantile, probs = c(lb, ub))
+    post_cred_icc1 <-
+      apply(ranefs_icc1, 2, quantile, probs = c(lb, ub))
     array_collect[, , 3] <- cbind(post_mean_icc1,
                                   post_sd_icc1,
                                   t(post_cred_icc1))
 
 
-    ranefs_icc2 <- sapply(1:J, FUN = function(x) {
-      samps$tau_mu^2  /  (samps$tau_mu^2  + (ranefs_s[,x]^2 / obs_per_group[x]) )
-    })
+    ranefs_icc2 <- sapply(
+      1:J,
+      FUN = function(x) {
+        samps$tau_mu ^ 2  /  (samps$tau_mu ^ 2  + (ranefs_s[, x] ^ 2 / obs_per_group[x]))
+      }
+    )
 
     post_mean_icc2 <- apply(ranefs_icc2, 2, mean)
     post_sd_icc2 <- apply(ranefs_icc2, 2, sd)
-    post_cred_icc2 <- apply(ranefs_icc2, 2, quantile, probs = c(lb, ub))
+    post_cred_icc2 <-
+      apply(ranefs_icc2, 2, quantile, probs = c(lb, ub))
     array_collect[, , 4] <- cbind(post_mean_icc2,
-                                   post_sd_icc2,
-                                   t(post_cred_icc2))
+                                  post_sd_icc2,
+                                  t(post_cred_icc2))
 
 
 
-    }
+  }
 
   array_collect <- round(array_collect, 10)
 
@@ -134,6 +161,8 @@ coef.vicc <- function(object,
                                      "Cred.lb",
                                      "Cred.ub")
 
-  return(array_collect)
+  returned_object <- list(group = array_collect)
+  class(returned_object) <- "group_parameters"
+  return(returned_object)
 
 }
