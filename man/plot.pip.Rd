@@ -7,7 +7,7 @@
 \method{plot}{pip}(x, color = "black", width = 0.5, ...)
 }
 \arguments{
-\item{x}{An object of class \code{pip}}
+\item{x}{An object of class \code{pip}.}
 
 \item{color}{Character string. Which color for the bars
 (defaults to \code{black})?}

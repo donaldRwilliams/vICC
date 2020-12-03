@@ -4,7 +4,8 @@
 #'              the probability that each group differs from the average within-group
 #'              variance.
 #'
-#' @param x An object of class \code{pip}
+#' @param x An object of class \code{pip}.
+#'
 #' @param color Character string. Which color for the bars
 #'              (defaults to \code{black})?
 #'
