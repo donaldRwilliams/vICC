@@ -161,9 +161,9 @@ vicc <- function(y, group,
                          "rho12")
     )
   } else if(type == "customary"){
-
+    file <- textConnection(ICC_customary)
     model <- rjags::jags.model(
-      file = textConnection(ICC_customary),
+      file = file,
       n.chains = chains,
       inits = list(fe_mu = mean(y)),
       data = list(
@@ -183,7 +183,7 @@ vicc <- function(y, group,
                          "tau_mu",
                          "fe_mu")
     )
-
+    close(file)
     } else {
       stop("model not supported. see documentation")
   }
