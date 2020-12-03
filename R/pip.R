@@ -53,6 +53,20 @@ pip <- function(object, ...){
   } else {
     stop("type not supported.")
   }
+  returned_object <- list(pip_summary = pip_summary)
+  class(returned_object) <- "pip"
+  return(returned_object)
+}
 
-  return(pip_summary)
+
+#' Print \code{pip} Objects
+#'
+#' @param x An object of class \code{pip}.
+#' @param ... Currently ignored.
+#'
+#' @export
+print.pip <- function(x, ...){
+  cat("Posterior Inclusion Probabilities:\n\n")
+  print(x$pip_summary, row.names = FALSE, right = FALSE)
+  cat("------")
 }

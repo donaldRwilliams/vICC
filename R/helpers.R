@@ -169,4 +169,4 @@ globalVariables(c("group_color",
                   "group",
                   "Post.mean",
                   "Cred.lb",
-                  "Cred.ub"))
+                  "Cred.ub", "PIP"))
