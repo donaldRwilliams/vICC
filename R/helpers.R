@@ -1,5 +1,5 @@
-#' @importFrom stats quantile sd coef
 #' @importFrom methods is
+#' @importFrom stats quantile sd coef
 ICC_lsm <- "model{
 
   for(j in 1:J){
@@ -163,7 +163,6 @@ fz ~ dnorm(0, 1)
 rho12 = tanh(fz)
 
 }"
-
 
 globalVariables(c("group_color",
                   "group",
