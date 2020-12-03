@@ -170,3 +170,29 @@ globalVariables(c("group_color",
                   "Cred.lb",
                   "Cred.ub",
                   "PIP"))
+
+
+viccStartupMessage <- function(){
+  msg <- c(paste0(
+
+    "
+            _______ _____ _____
+              /||   //   //
+     ____    //||  //   //
+       \\\\   // || ||   ||
+        \\\\ //  || ||   ||
+         \\ /   ||  \\\\   \\\\
+          / ___||__ \\\\___\\\\____
+          ", "\nVersion ", packageVersion("vICC")),
+    "\nType 'citation(\"vICC\")' for citing this R package.")
+  return(msg)
+}
+
+.onAttach <- function(lib, pkg){
+  # startup message
+  msg <- viccStartupMessage()
+  if(!interactive())
+    msg[1] <- paste("Package 'vICC' version", packageVersion("vICC"))
+  packageStartupMessage(msg)
+  invisible()
+}
