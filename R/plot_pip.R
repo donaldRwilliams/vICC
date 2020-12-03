@@ -44,6 +44,8 @@
 plot.pip <- function(x, color = "black",
                      width = 0.5, ...){
   dat_plot <- x$pip_summary
+
+  # check for pips
   if(nrow(dat_plot) ==1){
     stop("type not supported. must be 'tick_group'")
   }
