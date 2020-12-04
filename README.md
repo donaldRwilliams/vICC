@@ -108,7 +108,7 @@ This is a basic example which shows you how to implement `pick_group`
     
     fit
     
-    #> vICC: Varying Intraclass Correlaton Coefficients
+    #> vICC: Varying Intraclass Correlation Coefficients
     #> Type: pick_group 
     #> -----
     #> Random Effects:
