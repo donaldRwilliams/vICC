@@ -68,5 +68,6 @@ pip <- function(object, ...){
 print.pip <- function(x, ...){
   cat("Posterior Inclusion Probabilities:\n\n")
   print(x$pip_summary, row.names = FALSE, right = FALSE)
+  cat("\n")
   cat("------")
 }

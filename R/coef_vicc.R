@@ -7,7 +7,7 @@
 #'
 #' @param object An object of class \code{vicc}
 #'
-#' @param cred Numeric. Credible interval width (defaults to \code{0.90})
+#' @param cred Numeric. Credible interval width (defaults to \code{0.90}).
 #'
 #' @param ... Currently ignored.
 #'

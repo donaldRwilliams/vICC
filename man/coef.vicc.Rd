@@ -10,7 +10,7 @@
 \arguments{
 \item{object}{An object of class \code{vicc}}
 
-\item{cred}{Numeric. Credible interval width (defaults to \code{0.90})}
+\item{cred}{Numeric. Credible interval width (defaults to \code{0.90}).}
 
 \item{...}{Currently ignored.}
 }
