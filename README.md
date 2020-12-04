@@ -30,10 +30,12 @@ reliability indices.
 
 The following are implemented in **vICC**:
 
-1.  `pick_group`: This model has a spike and slab on the random
-    intercepts for the within-group variance. This provides posterior
-    inclusion probabilities that each group (e.g., person) does not
-    belong to the common within-group variance model.
+1.  `pick_group`:
+    
+    This model has a spike and slab on the random intercepts for the
+    within-group variance. This provides posterior inclusion
+    probabilities that each group (e.g., person) does not belong to the
+    common within-group variance model.
 
 ## Installation
 
