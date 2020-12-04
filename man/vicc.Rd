@@ -49,8 +49,6 @@ Compute varying intraclass correlation coefficients
 \examples{
 \donttest{
 
-flanker <- vICC::flanker
-
 # congruent trials
 congruent <- subset(flanker, cond == 0)
 
