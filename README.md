@@ -17,16 +17,16 @@ group (e.g., person, school, etc.). The underlying assumption is a
 common within-group variance, whereas, in **vICC**, a random-effects
 model is fitted to the residual variance, thereby permitting group-level
 ICCs. When subjects are the grouping variable, this is akin to
-investigating individual differences.
+investigating individual differences in the ICC.
 
 ## Measurement Reliability
 
 The methodology in **vICC** was introduced in Williams, Martin, and Rast
-(2019). The context was measurement reliability in a cognitive
-inhibition task. To this end, **vICC** provides ICC(1), that is the
-correlation for any two observations from the same group, and ICC(2),
-that is average score reliability. Both ICC(1) and ICC(2) are
-reliability indices.
+(2019). The context was measurement reliability in a cognitive task. To
+this end, **vICC** provides ICC(1), that is the correlation for any two
+observations from the same group, and ICC(2), that is average score
+reliability. Both ICC(1) and ICC(2) are reliability indices. Group-level
+standard error of measurement is also provided.
 
 ## Available Models
 
