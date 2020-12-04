@@ -8,23 +8,32 @@ Status](https://travis-ci.org/donaldRwilliams/BGGM.svg?branch=master)](https://t
 
 The goal of vICC is to compute varying intraclass correlation
 coefficients (ICC) in a one-way random effects model (i.e., a random
-intercepts only model). Often computing the ICC is the first step when
+intercepts only model). Often computing an ICC is the first step when
 fitting a mixed-effects (a.k.a., hierarchical, multilevel, etc.) model
 that results in *merely* one value that is assumed to apply to each
-group (e.g., person, school). The underlying assumption is a common
-within-group variance, whereas in **vICC** a random-effects model is
-fitted to the residual variance, thereby permitting group-level ICCs.
-When subjects are the grouping variable, this is akin to investigating
-individual differences in the ICC.
+group (e.g., person, school, etc.). The underlying assumption is a
+common within-group variance, whereas, in **vICC**, a random-effects
+model is fitted to the residual variance, thereby permitting group-level
+ICCs. When subjects are the grouping variable, this is akin to
+investigating individual differences.
 
 ## Measurement Reliability
 
 The methodology in **vICC** was introduced in Williams, Martin, and Rast
 (2019). The context was measurement reliability in a cognitive
-inhibition task. To this end, **vICC** provides ICC(1), that is
+inhibition task. To this end, **vICC** provides ICC(1), that is the
 correlation for any two observations from the same group, and ICC(2),
-this is average score reliability. Both ICC(1) and ICC(2) are
+that is average score reliability. Both ICC(1) and ICC(2) are
 reliability indices.
+
+## Available Models
+
+The following are implemented in **vICC**:
+
+1.  `pick_group`: This model has a spike and slab on the random
+    intercepts for the within-group variance. This provides posterior
+    inclusion probabilities that each group (e.g., person) does not
+    belong to the common within-group variance model.
 
 ## Installation
 
