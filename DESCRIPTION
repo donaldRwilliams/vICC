@@ -1,11 +1,13 @@
 Package: vICC
 Type: Package
-Title: Varyying Intraclass Correlation Coefficients
+Title: Varying Intraclass Correlation Coefficients
 Version: 1.0.0
 Date: 2020-11-30
 Authors@R: person("Donald", "Williams", email = "drwwilliams@ucdavis.edu", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Compute group-specific intraclass correlation coefficients, 
+             Bayesian testing of homogenous within-group variance, and spike-and-slab
+             model selection to determine which groups share a common within-group 
+             variance in a one-way random effects model.
 License: GPL-2
 Depends: R (>= 4.0.0)
 Imports: 
