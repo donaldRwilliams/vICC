@@ -25,8 +25,7 @@ The methodology in **vICC** was introduced in Williams, Martin, and Rast
 (2019). The context was measurement reliability in a cognitive task. To
 this end, **vICC** provides ICC(1), that is the correlation for any two
 observations from the same group, and ICC(2), that is average score
-reliability. Both ICC(1) and ICC(2) are reliability indices. Group-level
-standard error of measurement is also provided.
+reliability. Both ICC(1) and ICC(2) are reliability indices.
 
 ## Installation
 
@@ -113,14 +112,17 @@ This is a basic example which shows you how to implement `pick_group`
     #> -----
     #> Random Effects:
     #>                 Post.mean Post.sd Cred.lb Cred.ub
-    #> RE.sd.mean      0.0464    0.0063  0.0359  0.0615 
-    #> RE.sd.sigma     0.5235    0.0742  0.3969  0.6989 
-    #> Cor(mean,sigma) 0.7707    0.1330  0.5017  0.9696 
+    #> RE.sd.mean      0.0467    0.0064  0.0362  0.0607 
+    #> RE.sd.sigma     0.5241    0.0639  0.4056  0.6541 
+    #> Cor(mean,sigma) 0.7929    0.0859  0.5983  0.9303 
     #> 
     #> Fixed Effects:
     #>          Post.mean Post.sd Cred.lb Cred.ub
-    #> FE.mean  0.4425    0.0070  0.4292  0.4557 
-    #> FE.sigma 0.0971    0.0047  0.0885  0.1070 
+    #> FE.mean  0.4402    0.0070  0.4258  0.4529 
+    #> FE.sigma 0.0954    0.0045  0.0869  0.1046 
+    #> ICC(1)   0.1950    0.0471  0.1189  0.3022 
+    #> ICC(2)   0.8511    0.0375  0.7714  0.9154 
+    #> -----
     -----
 
 `RE.sd.sigma` is the between-group standard deviation for the
@@ -220,7 +222,7 @@ deviations (`plot_sd`), ICC(2) (`plot_icc2`).
 
 Williams, Donald R, Stephen R Martin, and Philippe Rast. 2019. “Putting
 the Individual into Reliability: Bayesian Testing of Homogeneous
-Within-Person Variance in Hierarchical Models.”
+Within-Person Variance in Hierarchical Models.” *PsyArXiv*.
 
 </div>
 

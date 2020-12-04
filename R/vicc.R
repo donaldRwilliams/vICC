@@ -228,12 +228,31 @@ print.vicc <- function(x, cred = 0.95, ...){
     print(round(re_summary, 4), right = FALSE)
     cat("\n")
 
+    obs_per_group <- tapply(x$model$data()$ID,
+                            x$model$data()$ID,
+                            length)
+
+    icc1 <- (samps$tau_mu ^ 2 / (samps$tau_mu ^ 2 + samps$sigma ^ 2))
+    icc2 <- (samps$tau_mu ^ 2 / (samps$tau_mu ^ 2 + ((samps$sigma ^2) / mean(obs_per_group))))
     cat("Fixed Effects:\n")
     fe_mu <- samps$fe_mu
-    fe_summary <- data.frame(Post.mean = mean(fe_mu),
+
+    fe_summary <-
+      rbind.data.frame(
+      data.frame(Post.mean = mean(fe_mu),
                              Post.sd = sd(fe_mu),
-                             t(quantile(fe_mu, c(lb, ub))))
-    row.names(fe_summary) <- "FE.mean"
+                             t(quantile(fe_mu, c(lb, ub)))),
+      data.frame(Post.mean = mean(icc1),
+                 Post.sd = sd(icc1),
+                 t(quantile(icc1, c(lb, ub)))),
+      data.frame(Post.mean = mean(icc2),
+                 Post.sd = sd(icc2),
+                 t(quantile(icc2, c(lb, ub))))
+
+      )
+    row.names(fe_summary) <- c("FE.mean",
+                               "ICC(1)",
+                               "ICC(2)")
     colnames(fe_summary)[3:4] <- c("Cred.lb", "Cred.ub")
     print(round(fe_summary, 4), right = FALSE)
 
@@ -272,7 +291,9 @@ print.vicc <- function(x, cred = 0.95, ...){
                  t(quantile(re_cor, c(lb, ub))))
 
     )
-    row.names(re_summary) <- c("RE.sd.mean", "RE.sd.sigma", "Cor(mean,sigma)")
+    row.names(re_summary) <- c("RE.sd.mean",
+                               "RE.sd.sigma",
+                               "Cor(mean,sigma)")
     colnames(re_summary)[3:4] <- c("Cred.lb", "Cred.ub")
     print(round(re_summary, 4), right = FALSE)
     cat("\n")
@@ -280,6 +301,14 @@ print.vicc <- function(x, cred = 0.95, ...){
     cat("Fixed Effects:\n")
     fe_mu <- samps$fe_mu
     fe_sd <- exp(samps$fe_sd)
+
+    obs_per_group <- tapply(x$model$data()$ID,
+                           x$model$data()$ID,
+                            length)
+
+    icc1 <- (samps$tau_mu ^ 2 / (samps$tau_mu ^ 2 + exp(samps$fe_sd) ^ 2))
+    icc2 <- (samps$tau_mu ^ 2 / (samps$tau_mu ^ 2 + exp(samps$fe_sd)^2 / mean(obs_per_group)))
+
     fe_summary <-
       rbind.data.frame(
         data.frame(Post.mean = mean(fe_mu),
@@ -288,14 +317,26 @@ print.vicc <- function(x, cred = 0.95, ...){
 
         data.frame(Post.mean = mean(fe_sd),
                    Post.sd = sd(fe_sd),
-                   t(quantile(fe_sd, c(lb, ub))))
+                   t(quantile(fe_sd, c(lb, ub)))),
+
+
+        data.frame(Post.mean = mean(icc1),
+                   Post.sd = sd(icc1),
+                   t(quantile(icc1, c(lb, ub)))),
+
+        data.frame(Post.mean = mean(icc2),
+                   Post.sd = sd(icc2),
+                   t(quantile(icc2, c(lb, ub))))
 
       )
-    row.names(fe_summary) <- c("FE.mean",
-                               "FE.sigma")
+   row.names(fe_summary) <- c("FE.mean",
+                               "FE.sigma",
+                              "ICC(1)",
+                              "ICC(2)")
     colnames(fe_summary)[3:4] <- c("Cred.lb",
                                    "Cred.ub")
     print(round(fe_summary, 4), right = FALSE)
+
 
   }
   cat("-----\n")

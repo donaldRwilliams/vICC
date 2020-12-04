@@ -1,51 +1,19 @@
-#' @title Standard Error of Measurement
-#'
-#' @description Compute the standard error of measurment, possibly for
-#'              each group.
-#'
-#' @param object An object of class \code{vicc}.
-#'
-#' @param cred Numeric. Credible interval width (defaults to \code{0.90}).
-#'
-#' @param ... Currently ignored.
-#'
-#' @note Due to the hierarchical model formulation, the group-level sem is
-#'       partially pooled (i.e., shrinkage) to the average,
-#'
-#'
-#' @return An object of class \code{sem}.
-#'
-#' @export
-#'
-#' @examples
-#' \donttest{
-#' # congruent trials
-#' congruent <- subset(flanker, cond == 0)
-#'
-#' # subset 25 from each group
-#' dat <- congruent[unlist(tapply(1:nrow(congruent),
-#'                             congruent$id,
-#'                             head, 25)), ]
-#'
-#' fit <- vicc(
-#'   y  = dat$rt,
-#'   group = dat$id,
-#'   iter = 500,
-#'   burnin = 10,
-#'   type =  "pick_group"
-#'   )
-#'
-#' sem(fit)
-#'}
+
 sem <- function(object, cred = 0.95, ...){
   if(!is(object, "vicc")){
     stop("object must be of class 'vicc'")
   }
+
   samps <- posterior_samples(object)
   lb <- (1 - cred) / 2
   ub <-  1 - lb
+
   if(object$type == "customary"){
-    sem <- samps$sigma
+    obs_per_group <- tapply(object$model$data()$ID,
+                            object$model$data()$ID,
+                            length)
+
+    sem <- samps$sigma / sqrt(mean(obs_per_group))
     sem_summary <- data.frame(Post.mean = mean(sem),
                               Post.sd = sd(sem),
                               t(quantile(sem, probs = c(lb, ub)) ))
@@ -55,12 +23,40 @@ sem <- function(object, cred = 0.95, ...){
                             "data.frame")
     returned_object <- sem_summary
   } else {
-    sem <- exp(samps$fe_sd)
+    obs_per_group <- tapply(object$model$data()$ID,
+                            object$model$data()$ID,
+                            length)
+
+    sem <- exp(samps$fe_sd) / sqrt(mean(obs_per_group))
+
     sem_summary <- data.frame(Post.mean = mean(sem),
                               Post.sd = sd(sem),
                               t(quantile(sem, probs = c(lb, ub)) ))
-    coefs <- coef(object, cred = cred)
-    colnames(sem_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+
+
+   df <- t(as.matrix(obs_per_group))
+
+  mat <- sqrt(t(do.call(rbind,
+             lapply(df, rep, nrow(samps))
+   )))
+
+    array_collect <- array(0, c(length(obs_per_group), 4, 1 ))
+    sem <- exp(samps[, grep("beta_s", colnames(samps))]) /mat
+    post_mean_sem <- apply(sem, 2, mean)
+    post_sd_sem <- apply(sem, 2, sd)
+    post_q_sem <- apply(sem, 2, quantile, probs = c(lb, ub))
+    array_collect[, , 1] <- cbind(post_mean_sem,
+                                  post_sd_sem,
+                                  t(post_q_sem))
+
+     dimnames(array_collect)[[3]] <- c("sem")
+     dimnames(array_collect)[[2]] <- c("Post.mean", "Post.sd", "Cred.lb", "Creb.ub")
+
+     coefs <- list(group = array_collect)
+
+
+    # colnames(sem_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+
     returned_object <- list(sem_summary = sem_summary,
                             coefs = coefs)
     class(returned_object) <- c("sem", "list")
@@ -82,7 +78,7 @@ print.sem <- function(x, ...){
     cat("\n")
     cat("------\n")
     cat("Group-Level:\n\n")
-    print(as.data.frame(x$coefs$group[,,"sd"]),
+    print(as.data.frame(x$coefs$group[,,"sem"]),
           row.names = FALSE,
           digits = 3,
           right = FALSE)
