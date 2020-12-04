@@ -45,6 +45,12 @@ You can install the development version from
 devtools::install_github("donaldRwilliams/vICC")
 ```
 
+### Installing JAGS
+
+**vICC** uses the popular Bayesian software JAGS to estimate the models.
+It must be downloaded from the following link:
+<https://sourceforge.net/projects/mcmc-jags/files/>
+
 ## Available Models
 
 The following are implemented in **vICC**:
