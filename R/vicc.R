@@ -68,7 +68,6 @@ vicc <- function(y, group,
   # number of groups
   J <- length(unique(ID))
 
-
   if(type == "pick_group") {
 
     model <-
@@ -197,8 +196,6 @@ vicc <- function(y, group,
 
   class(returned_object) <- "vicc"
   return(returned_object)
-
-
 }
 
 
@@ -221,14 +218,17 @@ print.vicc <- function(x, cred = 0.95, ...){
   if(x$type == "customary"){
     cat("Type:", x$type, "\n")
     cat("-----\n")
+
     cat("Random Effects:\n")
     re_sd <- samps$tau_mu
     re_summary <- data.frame(Post.mean = mean(re_sd),
-                             Post.sd = sd(re_sd), t(quantile(re_sd, c(lb, ub))))
+                             Post.sd = sd(re_sd),
+                             t(quantile(re_sd, c(lb, ub))))
     row.names(re_summary) <- "RE.sd.mean"
     colnames(re_summary)[3:4] <- c("Cred.lb", "Cred.ub")
     print(round(re_summary, 4), right = FALSE)
     cat("\n")
+
     cat("Fixed Effects:\n")
     fe_mu <- samps$fe_mu
     fe_summary <- data.frame(Post.mean = mean(fe_mu),
@@ -237,6 +237,7 @@ print.vicc <- function(x, cred = 0.95, ...){
     row.names(fe_summary) <- "FE.mean"
     colnames(fe_summary)[3:4] <- c("Cred.lb", "Cred.ub")
     print(round(fe_summary, 4), right = FALSE)
+
 
     sigma <- samps$sigma
     sigma_summary <- data.frame(Post.mean = mean(sigma),
@@ -252,6 +253,7 @@ print.vicc <- function(x, cred = 0.95, ...){
 
     cat("Type:", x$type, "\n")
     cat("-----\n")
+
     cat("Random Effects:\n")
     re_sd_mean <- samps$tau_mu
     re_sd_sd <- samps$tau_sd
@@ -275,8 +277,8 @@ print.vicc <- function(x, cred = 0.95, ...){
     colnames(re_summary)[3:4] <- c("Cred.lb", "Cred.ub")
     print(round(re_summary, 4), right = FALSE)
     cat("\n")
-    cat("Fixed Effects:\n")
 
+    cat("Fixed Effects:\n")
     fe_mu <- samps$fe_mu
     fe_sd <- exp(samps$fe_sd)
     fe_summary <-
@@ -290,8 +292,10 @@ print.vicc <- function(x, cred = 0.95, ...){
                    t(quantile(fe_sd, c(lb, ub))))
 
       )
-    row.names(fe_summary) <- c("FE.mean", "FE.sigma")
-    colnames(fe_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+    row.names(fe_summary) <- c("FE.mean",
+                               "FE.sigma")
+    colnames(fe_summary)[3:4] <- c("Cred.lb",
+                                   "Cred.ub")
     print(round(fe_summary, 4), right = FALSE)
 
   }

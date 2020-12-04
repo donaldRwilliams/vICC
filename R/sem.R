@@ -46,7 +46,8 @@ sem <- function(object, cred = 0.95, ...){
   ub <-  1 - lb
   if(object$type == "customary"){
     sem <- samps$sigma
-    sem_summary <- data.frame(Post.mean = mean(sem), Post.sd = sd(sem),
+    sem_summary <- data.frame(Post.mean = mean(sem),
+                              Post.sd = sd(sem),
                               t(quantile(sem, probs = c(lb, ub)) ))
 
     colnames(sem_summary)[3:4] <- c("Cred.lb", "Cred.ub")
@@ -55,7 +56,8 @@ sem <- function(object, cred = 0.95, ...){
     returned_object <- sem_summary
   } else {
     sem <- exp(samps$fe_sd)
-    sem_summary <- data.frame(Post.mean = mean(sem), Post.sd = sd(sem),
+    sem_summary <- data.frame(Post.mean = mean(sem),
+                              Post.sd = sd(sem),
                               t(quantile(sem, probs = c(lb, ub)) ))
     coefs <- coef(object, cred = cred)
     colnames(sem_summary)[3:4] <- c("Cred.lb", "Cred.ub")
@@ -73,13 +75,17 @@ print.sem <- function(x, ...){
   cat("Standard Error of Measurement\n\n")
   if(is(x, "list")){
     cat("Fixed Effect:\n\n")
-    print(as.data.frame(x$sem_summary), row.names = FALSE,
-          digits = 3, right = FALSE)
+    print(as.data.frame(x$sem_summary),
+          row.names = FALSE,
+          digits = 3,
+          right = FALSE)
     cat("\n")
     cat("------\n")
     cat("Group-Level:\n\n")
-    print(as.data.frame( x$coefs$group[,,"sd"]), row.names = FALSE,
-          digits = 3, right = FALSE)
+    print(as.data.frame(x$coefs$group[,,"sd"]),
+          row.names = FALSE,
+          digits = 3,
+          right = FALSE)
   } else {
     print(as.data.frame(x),
           row.names = FALSE,

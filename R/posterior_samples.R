@@ -34,7 +34,6 @@ posterior_samples <- function(object){
   if(!is(object, "vicc")){
     stop("object must be of class 'vicc'")
   }
-
   samples <- do.call(rbind.data.frame,
                      lapply(1:object$chains, function(x)
                      coda::as.mcmc.list(object$fit)[[x]][-c(1:object$burnin), ]))

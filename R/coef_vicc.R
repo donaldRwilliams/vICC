@@ -40,8 +40,11 @@ coef.vicc <- function(object,
                       cred = 0.90,
                       ...){
 
+  # credible interval
   lb <- (1 - cred) / 2
   ub <-  1 - lb
+
+  # number of groups
   J <- object$model$data()$J
 
   if (object$type == "customary") {
@@ -86,6 +89,8 @@ coef.vicc <- function(object,
   nrow = J,
   ncol = 4,
   byrow = TRUE)
+
+  # all other models
   } else {
     samps <- posterior_samples(object)
 
@@ -134,7 +139,6 @@ coef.vicc <- function(object,
                                   post_sd_icc1,
                                   t(post_cred_icc1))
 
-
     ranefs_icc2 <- sapply(
       1:J,
       FUN = function(x) {
@@ -149,13 +153,9 @@ coef.vicc <- function(object,
     array_collect[, , 4] <- cbind(post_mean_icc2,
                                   post_sd_icc2,
                                   t(post_cred_icc2))
-
-
-
-  }
+    }
 
   array_collect <- round(array_collect, 10)
-
   dimnames(array_collect)[[2]] <-  c("Post.mean",
                                      "Post.sd",
                                      "Cred.lb",

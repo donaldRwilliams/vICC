@@ -41,6 +41,7 @@
 fixef.vicc <- function(object, cred = 0.95, ...) {
 
   samps <- posterior_samples(object)
+
   lb <- (1 - cred) / 2
   ub <-  1 - lb
 
@@ -50,31 +51,29 @@ fixef.vicc <- function(object, cred = 0.95, ...) {
                                   t(quantile(
                                     samps$fe_mu, probs = c(lb, ub)
                                   )))
-
     row.names(fixef_summary) <- c("intercept_mean")
 
+    } else {
 
-  } else {
-    fixef_summary <-  rbind(
-      cbind(mean(samps$fe_mu),
-            sd(samps$fe_mu),
-            t(quantile(
-              samps$fe_mu, probs = c(lb, ub)
-            ))),
-      cbind(mean(exp(samps$fe_sd)),
-            sd(exp(samps$fe_sd)),
-            t(quantile(
-              exp(samps$fe_sd), probs = c(lb, ub)
-            ))))
+      fixef_summary <-  rbind(cbind(mean(samps$fe_mu),
+                                    sd(samps$fe_mu),
+                                    t(quantile(
+                                      samps$fe_mu, probs = c(lb, ub)
+                                    ))),
+                              cbind(mean(exp(samps$fe_sd)),
+                                    sd(exp(samps$fe_sd)),
+                                    t(quantile(
+                                      exp(samps$fe_sd), probs = c(lb, ub)
+                                    ))))
 
-
-    row.names(fixef_summary) <- c("intercept_mean",
-                                  "intercept_sigma")
+      row.names(fixef_summary) <- c("intercept_mean",
+                                   "intercept_sigma")
 
 
   }
-  colnames(fixef_summary) <-
-    c("Post.mean", "Post.sd", "Cred.lb", "Cred.ub")
+  colnames(fixef_summary) <- c("Post.mean",
+                               "Post.sd",
+                               "Cred.lb",
+                               "Cred.ub")
   return(fixef_summary)
-
 }

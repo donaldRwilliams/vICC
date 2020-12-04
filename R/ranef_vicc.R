@@ -62,8 +62,6 @@ ranef.vicc <- function(object,
       means <- samps$fe_mu
       sds <- samps$fe_sd
 
-
-
       obs_per_group <- tapply(object$model$data()$ID,
                               object$model$data()$ID,
                               length)
@@ -94,7 +92,6 @@ ranef.vicc <- function(object,
       array_collect[,,2] <- cbind(post_mean_s, post_sd_s,
                                   t(post_cred_s))
 
-
       icc <-(samps$tau_mu^2 / (samps$tau_mu^2 + exp(sds)^2))
 
       ranefs_s <- exp(samps[paste0("beta_s[", 1:J, "]")])
@@ -119,26 +116,19 @@ ranef.vicc <- function(object,
         samps$tau_mu^2  /  (samps$tau_mu^2  + (ranefs_s[,x]^2 / obs_per_group[x]) )
       })
 
-
       ranefs_icc2 <- ranefs_icc2 - icc2
-
       post_mean_icc2 <- apply(ranefs_icc2, 2, mean)
       post_sd_icc2 <- apply(ranefs_icc2, 2, sd)
       post_cred_icc2 <- apply(ranefs_icc2, 2, quantile, probs = c(lb, ub))
       array_collect[, , 4] <- cbind(post_mean_icc2,
                                     post_sd_icc2,
                                     t(post_cred_icc2))
-
-
-
-
-  }
+      }
 
   dimnames(array_collect)[[2]] <-  c("Post.mean",
                                      "Post.sd",
                                      "Cred.lb",
                                      "Cred.ub")
-
   returned_object <- list(group = array_collect)
   class(returned_object) <- "group_parameters"
   return(returned_object)

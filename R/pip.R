@@ -36,16 +36,18 @@ pip <- function(object, ...){
 
   samps <- posterior_samples(object)
 
-  if(object$type == "pick_group"){
+  if (object$type == "pick_group") {
     J <- object$model$data()$J
-    pips <- colMeans( samps[,grep("pick_id", x = colnames(samps)) ]  )
-    pip_summary <- data.frame(Parameter =  paste0("RE_", 1:J), Group = 1:J, PIP = pips)
+    pips <-
+      colMeans(samps[, grep("pick_id", x = colnames(samps))])
+    pip_summary <-
+      data.frame(Parameter =  paste0("RE_", 1:J),
+                 Group = 1:J,
+                 PIP = pips)
     row.names(pip_summary) <- NULL
 
-
   } else if (object$type == "pick_tau") {
-
-    pips <- mean( samps[,grep("pick_tau", x = colnames(samps)) ]  )
+    pips <- mean(samps[, grep("pick_tau", x = colnames(samps))])
 
     pip_summary <- data.frame(Param = "RE_sd_sigma", PIP = pips)
     row.names(pip_summary) <- NULL

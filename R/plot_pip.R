@@ -46,7 +46,6 @@ plot.pip <- function(x, color = "black",
                      width = 0.5, ...){
 
   dat_plot <- x$pip_summary
-
   # check for pips
   if(nrow(dat_plot) ==1){
     stop("type not supported. must be 'tick_group'")
@@ -54,7 +53,6 @@ plot.pip <- function(x, color = "black",
 
   dat_plot <- dat_plot[order(dat_plot$PIP), ]
   dat_plot$group <- 1:nrow(dat_plot)
-
   plt <- ggplot(dat_plot, aes(x = PIP,
                               y = as.factor(group))) +
     geom_bar(stat = "identity",
@@ -62,13 +60,5 @@ plot.pip <- function(x, color = "black",
              color = color) +
     scale_y_discrete(labels = row.names(dat_plot)) +
     ylab("Group")
-
   return(plt)
 }
-
-
-
-
-
-
-
