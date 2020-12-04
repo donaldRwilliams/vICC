@@ -1,4 +1,4 @@
-#' Varying Intraclass Correlation Coefficients
+#' @title Varying Intraclass Correlation Coefficients
 #'
 #' @description Compute varying intraclass correlation coefficients
 #'
