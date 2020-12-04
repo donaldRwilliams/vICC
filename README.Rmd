@@ -42,9 +42,29 @@ The following are implemented in **vICC**:
     
     This model has a spike and slab on the random intercepts 
     for the within-group variance.  This provides posterior inclusion 
-    probabilities that each group (e.g., person) does not belong to the 
+    probabilities (PIP) that each group (e.g., person) does not belong to the 
     common within-group variance model.
                  
+2. `pick_tau`: 
+    
+    This model has a spike and slab on the random effects standard deviation in the 
+    scale model which captures between-group variability in the within-group
+    variances. This provides a PIP that there is variation in the within-group variances. 
+    In the context of reliability, a large PIP indicates that measurment invariance does
+    not hold, given there are group-level differences in so-called measurment error.
+    
+3. `pick_none`: 
+
+    This model also provides group-specific reliability, but there is no spike and slab 
+    formulation.
+    
+4. `customary`:
+    
+    This is the standard random intercept model that assumes a common 
+    within-group variance.
+
+
+Note that options 1 and 2 provide Bayesian model averaged estimates for the ICCs.
 
 
 ## Installation
