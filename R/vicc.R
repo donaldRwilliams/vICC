@@ -211,7 +211,7 @@ vicc <- function(y, group,
 print.vicc <- function(x, cred = 0.95, ...){
   lb <- (1 - cred) / 2
   ub <-  1 - lb
-  cat("vICC: Varying Intraclass Correlaton Coefficients\n")
+  cat("vICC: Varying Intraclass Correlation Coefficients\n")
   # cat("-----\n")
   samps <- posterior_samples(x)
 

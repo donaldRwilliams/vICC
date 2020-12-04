@@ -4,12 +4,12 @@
 \alias{plot.pip}
 \title{Plot \code{pip} Objects}
 \usage{
-\method{plot}{pip}(x, color = "black", width = 0.5, ...)
+\method{plot}{pip}(x, fill = "black", width = 0.5, ...)
 }
 \arguments{
 \item{x}{An object of class \code{pip}.}
 
-\item{color}{Character string. Which color for the bars
+\item{fill}{Character string. Which color for the bars
 (defaults to \code{black})?}
 
 \item{width}{Numeric. The width for the bars (defaults to \code{0.5}).}

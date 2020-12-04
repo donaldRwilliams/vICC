@@ -123,7 +123,7 @@ within-group variances, which is quite large and separated from zero in
 these data. Further, `Cor(mean, sigma)` is the correlation between the
 group-level means and the standard deviations.
 
-## Posterior Inclusion Probabilities
+### Posterior Inclusion Probabilities
 
 The posterior inclusion probabilities are obtained with
 
@@ -186,8 +186,9 @@ The posterior inclusion probabilities are obtained with
 which provide the probability that each group differs from the fixed
 effect within-group variance. The PIPs can then be plotted with
 
-``` 
-```
+    plot(pips)
+
+![](man/figures/pip.png)
 
 <div id="refs" class="references">
 

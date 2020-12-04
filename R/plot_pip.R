@@ -6,7 +6,7 @@
 #'
 #' @param x An object of class \code{pip}.
 #'
-#' @param color Character string. Which color for the bars
+#' @param fill Character string. Which color for the bars
 #'              (defaults to \code{black})?
 #'
 #' @param width Numeric. The width for the bars (defaults to \code{0.5}).
@@ -42,7 +42,7 @@
 #' plot(pips)
 #'
 #' }
-plot.pip <- function(x, color = "black",
+plot.pip <- function(x, fill = "black",
                      width = 0.5, ...){
 
   dat_plot <- x$pip_summary
@@ -57,7 +57,7 @@ plot.pip <- function(x, color = "black",
                               y = as.factor(group))) +
     geom_bar(stat = "identity",
              width = 0.5,
-             color = color) +
+             fill = fill) +
     scale_y_discrete(labels = row.names(dat_plot)) +
     ylab("Group")
   return(plt)
