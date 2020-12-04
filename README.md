@@ -28,6 +28,24 @@ observations from the same group, and ICC(2), that is average score
 reliability. Both ICC(1) and ICC(2) are reliability indices. Group-level
 standard error of measurement is also provided.
 
+## Installation
+
+<!-- You can install the released version of vICC from [CRAN](https://CRAN.R-project.org) with: -->
+
+<!-- ``` r -->
+
+<!-- install.packages("vICC") -->
+
+<!-- ``` -->
+
+You can install the development version from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("donaldRwilliams/vICC")
+```
+
 ## Available Models
 
 The following are implemented in **vICC**:
@@ -61,24 +79,6 @@ The following are implemented in **vICC**:
 
 Note that options 1 and 2 provide Bayesian model averaged estimates for
 the ICCs.
-
-## Installation
-
-<!-- You can install the released version of vICC from [CRAN](https://CRAN.R-project.org) with: -->
-
-<!-- ``` r -->
-
-<!-- install.packages("vICC") -->
-
-<!-- ``` -->
-
-You can install the development version from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("donaldRwilliams/vICC")
-```
 
 ## Example
 
