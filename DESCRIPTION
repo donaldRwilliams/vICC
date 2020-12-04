@@ -5,9 +5,9 @@ Version: 1.0.0
 Date: 2020-11-30
 Authors@R: person("Donald", "Williams", email = "drwwilliams@ucdavis.edu", role = c("aut", "cre"))
 Description: Compute group-specific intraclass correlation coefficients, 
-             Bayesian testing of homogenous within-group variance, and spike-and-slab
-             model selection to determine which groups share a common within-group 
-             variance in a one-way random effects model.
+    Bayesian testing of homogenous within-group variance, and spike-and-slab
+    model selection to determine which groups share a common within-group 
+    variance in a one-way random effects model.
 License: GPL-2
 Depends: R (>= 4.0.0)
 Imports: 

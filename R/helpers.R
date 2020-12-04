@@ -1,5 +1,6 @@
 #' @importFrom methods is
 #' @importFrom stats quantile sd coef
+#' @importFrom utils packageVersion
 ICC_lsm <- "model{
 
   for(j in 1:J){
