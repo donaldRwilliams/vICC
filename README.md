@@ -123,7 +123,6 @@ This is a basic example which shows you how to implement `pick_group`
     #> ICC(1)   0.1950    0.0471  0.1189  0.3022 
     #> ICC(2)   0.8511    0.0375  0.7714  0.9154 
     #> -----
-    -----
 
 `RE.sd.sigma` is the between-group standard deviation for the
 within-group variances, which is quite large and separated from zero in
