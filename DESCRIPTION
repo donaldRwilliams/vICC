@@ -7,7 +7,7 @@ Authors@R: person("Donald", "Williams", email = "drwwilliams@ucdavis.edu", role 
 Description: Compute group-specific intraclass correlation coefficients, 
     Bayesian testing of homogenous within-group variance, and spike-and-slab
     model selection to determine which groups share a common within-group 
-    variance in a one-way random effects model.
+    variance in a one-way random effects model <10.31234/osf.io/hpq7w>.
 License: GPL-2
 Depends: R (>= 4.0.0)
 Imports: 
