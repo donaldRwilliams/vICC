@@ -4,7 +4,8 @@
 #'
 #' @param y Numeric vector. The outcome variable.
 #'
-#' @param group Numeric vector. The grouping variable (e.g., subjects).
+#' @param group Numeric vector. The grouping variable (e.g., subjects). Note that the groups
+#'              must be numbered from 1 to the total number of groups.
 #'
 #' @param type Character string. Which model should be fitted
 #'              (defaults to \code{pick_group})? The options are

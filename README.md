@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<img src="man/figures/hex_sticker.png" width = 200 />
+
 # vICC: Varying Intraclass Correlation Coefficients
 
 [![Build
@@ -81,6 +83,7 @@ devtools::install_github("donaldRwilliams/vICC")
 This is a basic example which shows you how to implement `pick_group`
 
     library(vICC)
+    library(ggplot2)
     
     # congruent trials
     congruent <- subset(flanker, cond == 0)
@@ -189,6 +192,25 @@ effect within-group variance. The PIPs can then be plotted with
     plot(pips)
 
 ![](man/figures/pip.png)
+
+## Plotting Group-Level Reliability
+
+The group-level reliability, or ICCs, are plotted with
+
+    plts <- plot(fit)
+    
+    plts$plot_icc1 + 
+      theme(axis.text.x=element_text(angle=90, hjust=1), 
+            legend.title = element_blank()) +
+      xlab("Group")
+
+![](man/figures/icc1.png)
+
+Notice that the object `plts` can be further modified with `ggplot2`.
+Further, it also includes plots for the means (`plot_mean`), standard
+deviations (`plot_sd`), ICC(2) (`plot_icc2`).
+
+### References
 
 <div id="refs" class="references">
 
