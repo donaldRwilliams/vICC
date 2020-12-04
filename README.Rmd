@@ -72,13 +72,13 @@ Note that options 1 and 2 provide Bayesian model averaged estimates for the ICCs
 
 ## Installation
 
-You can install the released version of vICC from [CRAN](https://CRAN.R-project.org) with:
+<!-- You can install the released version of vICC from [CRAN](https://CRAN.R-project.org) with: -->
 
-``` r
-install.packages("vICC")
-```
+<!-- ``` r -->
+<!-- install.packages("vICC") -->
+<!-- ``` -->
 
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")

@@ -64,14 +64,16 @@ the ICCs.
 
 ## Installation
 
-You can install the released version of vICC from
-[CRAN](https://CRAN.R-project.org) with:
+<!-- You can install the released version of vICC from [CRAN](https://CRAN.R-project.org) with: -->
 
-``` r
-install.packages("vICC")
-```
+<!-- ``` r -->
 
-And the development version from [GitHub](https://github.com/) with:
+<!-- install.packages("vICC") -->
+
+<!-- ``` -->
+
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
