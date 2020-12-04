@@ -200,3 +200,100 @@ vicc <- function(y, group,
 
 
 }
+
+
+#' Print \code{vicc} Objects
+#'
+#' @param x An object of class \code{vicc}.
+#'
+#' @param cred Numeric. Credible interval width (defaults to \code{0.90}).
+#'
+#' @param ... Currently ignored
+#'
+#' @export
+print.vicc <- function(x, cred = 0.95, ...){
+  lb <- (1 - cred) / 2
+  ub <-  1 - lb
+  cat("vICC: Varying Intraclass Correlaton Coefficients\n")
+  # cat("-----\n")
+  samps <- posterior_samples(x)
+
+  if(x$type == "customary"){
+    cat("Type:", x$type, "\n")
+    cat("-----\n")
+    cat("Random Effects:\n")
+    re_sd <- samps$tau_mu
+    re_summary <- data.frame(Post.mean = mean(re_sd),
+                             Post.sd = sd(re_sd), t(quantile(re_sd, c(lb, ub))))
+    row.names(re_summary) <- "RE.sd.mean"
+    colnames(re_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+    print(round(re_summary, 4), right = FALSE)
+    cat("\n")
+    cat("Fixed Effects:\n")
+    fe_mu <- samps$fe_mu
+    fe_summary <- data.frame(Post.mean = mean(fe_mu),
+                             Post.sd = sd(fe_mu),
+                             t(quantile(fe_mu, c(lb, ub))))
+    row.names(fe_summary) <- "FE.mean"
+    colnames(fe_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+    print(round(fe_summary, 4), right = FALSE)
+
+    sigma <- samps$sigma
+    sigma_summary <- data.frame(Post.mean = mean(sigma),
+                                Post.sd = sd(sigma),
+                                t(quantile(sigma, c(lb, ub))))
+    row.names(sigma_summary) <- "sigma"
+    colnames(sigma_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+    cat("\n")
+    cat("Residual SD:\n")
+    print(round(sigma_summary, 4), right = FALSE)
+
+  } else {
+
+    cat("Type:", x$type, "\n")
+    cat("-----\n")
+    cat("Random Effects:\n")
+    re_sd_mean <- samps$tau_mu
+    re_sd_sd <- samps$tau_sd
+    re_cor <- samps$rho12
+    re_summary <- rbind.data.frame(
+
+      data.frame(Post.mean = mean(re_sd_mean),
+                 Post.sd = sd(re_sd_mean),
+                 t(quantile(re_sd_mean, c(lb, ub)))),
+
+      data.frame(Post.mean = mean(re_sd_sd),
+                 Post.sd = sd(re_sd_sd),
+                 t(quantile(re_sd_sd, c(lb, ub)))),
+
+      data.frame(Post.mean = mean(re_cor),
+                 Post.sd = sd(re_cor),
+                 t(quantile(re_cor, c(lb, ub))))
+
+    )
+    row.names(re_summary) <- c("RE.sd.mean", "RE.sd.sigma", "Cor(mean,sigma)")
+    colnames(re_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+    print(round(re_summary, 4), right = FALSE)
+    cat("\n")
+    cat("Fixed Effects:\n")
+
+    fe_mu <- samps$fe_mu
+    fe_sd <- exp(samps$fe_sd)
+    fe_summary <-
+      rbind.data.frame(
+        data.frame(Post.mean = mean(fe_mu),
+                   Post.sd = sd(fe_mu),
+                   t(quantile(fe_mu, c(lb, ub)))),
+
+        data.frame(Post.mean = mean(fe_sd),
+                   Post.sd = sd(fe_sd),
+                   t(quantile(fe_sd, c(lb, ub))))
+
+      )
+    row.names(fe_summary) <- c("FE.mean", "FE.sigma")
+    colnames(fe_summary)[3:4] <- c("Cred.lb", "Cred.ub")
+    print(round(fe_summary, 4), right = FALSE)
+
+  }
+  cat("-----\n")
+}
