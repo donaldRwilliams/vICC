@@ -19,6 +19,14 @@
 #'
 #' @examples
 #' \donttest{
+#' # congruent trials
+#' congruent <- subset(flanker, cond == 0)
+#'
+#' # subset 25 from each group
+#' dat <- congruent[unlist(tapply(1:nrow(congruent),
+#'                             congruent$id,
+#'                             head, 25)), ]
+#'
 #' fit <- vicc(
 #'   y  = dat$rt,
 #'   group = dat$id,
