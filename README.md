@@ -6,7 +6,7 @@
 # vICC: Varying Intraclass Correlation Coefficients
 
 [![Build
-Status](https://travis-ci.org/donaldRwilliams/BGGM.svg?branch=master)](https://travis-ci.org/donaldRwilliams/BGGM)
+Status](https://travis-ci.com/donaldRwilliams/vICC.svg?branch=master)](https://travis-ci.com/donaldRwilliams/vICC)
 
 The goal of vICC is to compute varying intraclass correlation
 coefficients (ICC) in a one-way random effects model (i.e., a random
