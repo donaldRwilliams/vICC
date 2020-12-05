@@ -219,6 +219,11 @@ Notice that the object `plts` can be further modified with `ggplot2`.
 Further, it also includes plots for the means (`plot_mean`), standard
 deviations (`plot_sd`), ICC(2) (`plot_icc2`).
 
+## Citing **vICC**
+
+Please cite Williams, Martin, and Rast (2019) when describing the method
+and `citation("vICC")` when stating the software used in the work.
+
 ### References
 
 <div id="refs" class="references">
