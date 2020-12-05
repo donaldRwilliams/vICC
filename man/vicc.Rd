@@ -19,7 +19,8 @@ vicc(
 \item{y}{Numeric vector. The outcome variable.}
 
 \item{group}{Numeric vector. The grouping variable (e.g., subjects). Note that the groups
-must be numbered from 1 to the total number of groups.}
+must be numbered from 1 to the total number of groups.
+See \code{\link[vICC]{change_group}}/}
 
 \item{type}{Character string. Which model should be fitted
 (defaults to \code{pick_group})? The options are
