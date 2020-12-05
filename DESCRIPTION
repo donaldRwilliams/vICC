@@ -2,7 +2,7 @@ Package: vICC
 Type: Package
 Title: Varying Intraclass Correlation Coefficients
 Version: 1.0.0
-Date: 2020-11-30
+Date: 2020-12-05
 Authors@R: person("Donald", "Williams", email = "drwwilliams@ucdavis.edu", role = c("aut", "cre"))
 Description: Compute group-specific intraclass correlation coefficients, 
     Bayesian testing of homogenous within-group variance, and spike-and-slab
