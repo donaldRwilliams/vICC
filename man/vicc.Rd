@@ -45,7 +45,8 @@ otherwise.}
 An object of class \code{vicc}.
 }
 \description{
-Compute varying intraclass correlation coefficients
+Compute varying intraclass correlation coefficients with the method
+             introduced in \insertCite{williams2019putting;textual}{vICC}.
 }
 \examples{
 \donttest{
@@ -65,4 +66,7 @@ fit <- vicc(y  = dat$rt,
             burnin = 10,
             type =  "customary")
 }
+}
+\references{
+\insertAllCited{}
 }

@@ -1,6 +1,7 @@
 #' @title Varying Intraclass Correlation Coefficients
 #'
-#' @description Compute varying intraclass correlation coefficients
+#' @description Compute varying intraclass correlation coefficients with the method
+#'              introduced in \insertCite{williams2019putting;textual}{vICC}.
 #'
 #' @param y Numeric vector. The outcome variable.
 #'
@@ -26,6 +27,9 @@
 #' @param prior_prob Numeric. The prior inclusion probability (defaults to \code{0.5}). This
 #'                   is used for \code{type = "pick_tau"} or \code{type = "pick_group"} and ignored
 #'                   otherwise.
+#'
+#' @references
+#' \insertAllCited{}
 #'
 #' @return An object of class \code{vicc}.
 #'
