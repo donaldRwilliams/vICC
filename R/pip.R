@@ -1,6 +1,6 @@
 #' @title Posterior Inclusion Probabilities
 #'
-#' @description Extract the posterior inclusion probabilities for either the
+#' @description Extract the posterior inclusion probabilities (PIP) for either the
 #'              random intercepts for sigma or the random effects standard deviation
 #'              for sigma.
 #'
@@ -8,7 +8,12 @@
 #'
 #' @param ... Currently ignored.
 #'
-#' @return A data frame
+#' @return A data frame.
+#'
+#' @note The PIPs indicate whether the groups differ from the fixed effect, or average,
+#'       within-group variance. If the PIP is large, this indicates there is high probability
+#'       that group differs from the common variance. A marginal Bayes factor can be computed
+#'       as PIP / (1 - PIP), assuming that \code{prior_prob = 0.5}.
 #'
 #' @export
 #'

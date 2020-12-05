@@ -12,12 +12,18 @@ pip(object, ...)
 \item{...}{Currently ignored.}
 }
 \value{
-A data frame
+A data frame.
 }
 \description{
-Extract the posterior inclusion probabilities for either the
+Extract the posterior inclusion probabilities (PIP) for either the
              random intercepts for sigma or the random effects standard deviation
              for sigma.
+}
+\note{
+The PIPs indicate whether the groups differ from the fixed effect, or average,
+      within-group variance. If the PIP is large, this indicates there is high probability
+      that group differs from the common variance. A marginal Bayes factor can be computed
+      as PIP / (1 - PIP), assuming that \code{prior_prob = 0.5}.
 }
 \examples{
 \donttest{

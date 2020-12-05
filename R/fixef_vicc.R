@@ -19,7 +19,9 @@
 #'
 #' @examples
 #' \donttest{
+#' # data
 #' Y <- flanker
+#'
 #' # congruent trials
 #' congruent <- subset(Y, cond == 0)
 #'
@@ -38,7 +40,7 @@
 #'
 #' fixef(fit)
 #' }
-fixef.vicc <- function(object, cred = 0.95, ...) {
+fixef.vicc <- function(object, cred = 0.90, ...) {
 
   samps <- posterior_samples(object)
 
@@ -49,7 +51,8 @@ fixef.vicc <- function(object, cred = 0.95, ...) {
     fixef_summary <-  cbind(mean(samps$fe_mu),
                                   sd(samps$fe_mu),
                                   t(quantile(
-                                    samps$fe_mu, probs = c(lb, ub)
+                                    samps$fe_mu,
+                                    probs = c(lb, ub)
                                   )))
     row.names(fixef_summary) <- c("intercept_mean")
 

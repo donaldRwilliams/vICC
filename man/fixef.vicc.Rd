@@ -5,7 +5,7 @@
 \alias{fixef}
 \title{Extract Fixed Effects}
 \usage{
-\method{fixef}{vicc}(object, cred = 0.95, ...)
+\method{fixef}{vicc}(object, cred = 0.9, ...)
 }
 \arguments{
 \item{object}{An object of class \code{vicc}.}
@@ -22,7 +22,9 @@ Summarize the fixed effects.
 }
 \examples{
 \donttest{
+# data
 Y <- flanker
+
 # congruent trials
 congruent <- subset(Y, cond == 0)
 
