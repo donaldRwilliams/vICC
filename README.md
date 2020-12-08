@@ -6,8 +6,8 @@
 # vICC: Varying Intraclass Correlation Coefficients
 
 [![CRAN
-Version](http://www.r-pkg.org/badges/version/BGGM)](https://cran.r-project.org/package=vICC)
-[![Downloads](https://cranlogs.r-pkg.org/badges/BGGM)](https://cran.r-project.org/package=vICC)
+Version](http://www.r-pkg.org/badges/version/vICC)](https://cran.r-project.org/package=vICC)
+[![Downloads](https://cranlogs.r-pkg.org/badges/vICC)](https://cran.r-project.org/package=vICC)
 [![Build
 Status](https://travis-ci.com/donaldRwilliams/vICC.svg?branch=master)](https://travis-ci.com/donaldRwilliams/vICC)
 
