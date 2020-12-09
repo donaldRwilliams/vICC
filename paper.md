@@ -24,6 +24,13 @@ In mixed-effects (a.k.a, hierarchical or multilevel) models, intraclass
 correlation coefficients (ICC) are commonly computed, with applications spanning 
 from characterizing group-level homogeneity (X) to measurment reliabilty (X). While 
 there are a wide spectrum of applications, an underlying assumption is that the 
-variance components used in their computation are fixed.
+variance components used in their computation are fixed and non-varying. Consider
+the case of ICC(1), that is,
+
+$$
+\frac{\sigma_2_b}{\sigma_2_b + \sigma_2_w}
+$$
+
+which is computed from a one-way random effects model.
 
 # Statement of Need
