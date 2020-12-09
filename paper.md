@@ -18,3 +18,12 @@ date: 08 December 2020
 year: 2020
 bibliography: inst/REFERENCES.bib
 ---
+
+# Summary
+In mixed-effects (a.k.a, hierarchical or multilevel) models, intraclass
+correlation coefficients (ICC) are commonly computed, with applications spanning 
+from characterizing group-level homogeneity (X) to measurment reliabilty (X). While 
+there are a wide spectrum of applications, an underlying assumption is that the 
+variance components used in their computation are fixed.
+
+# Statement of Need
