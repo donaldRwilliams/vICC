@@ -78,13 +78,14 @@ The following are implemented in **vICC**:
     This model has a spike and slab on the random effects standard deviation in the 
     scale model which captures between-group variability in the within-group
     variances. This provides a PIP that there is variation in the within-group variances. 
-    In the context of reliability, a large PIP indicates that measurment invariance does
-    not hold, given there are group-level differences in so-called measurment error.
+    In the context of reliability, a large PIP indicates that measurement invariance does
+    not hold, given there are group-level differences in so-called measurement error.
     
 3. `pick_none`: 
 
     This model also provides group-specific reliability, but there is no spike and slab 
-    formulation.
+    formulation.  This is perhaps ideal for those not familiar with Bayesian testing, but 
+    would still like to compute varying ICCs.
     
 4. `customary`:
     

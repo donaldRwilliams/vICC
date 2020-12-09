@@ -48,6 +48,37 @@ An object of class \code{vicc}.
 Compute varying intraclass correlation coefficients with the method
              introduced in \insertCite{williams2019putting;textual}{vICC}.
 }
+\details{
+There are four models (\code{type}):
+
+\enumerate{
+\item \code{type = "pick_group"}: This model has a spike and slab on the random intercepts for the
+                                  within-group variance. This provides posterior inclusion probabilities
+                                  (PIP) that each group (e.g., person) does not belong to the common
+                                  within-group variance model.
+
+\item \code{type = "pick_tau"}: This model has a spike and slab on the random effects standard deviation
+                                in the scale model which captures between-group variability in the within-group
+                                variances. This provides a PIP that there is variation in the within-group variances.
+                                In the context of reliability, a large PIP indicates that measurement invariance
+                                does not hold, given there are group-level differences in so-called measurement error.
+
+\item \code{type = "pick_none"}: This model also provides group-specific reliability, but there is no
+                                 spike and slab formulation. This is perhaps ideal for those not familiar
+                                 with Bayesian testing, but would still like to compute varying ICCs.
+
+\item \code{type = "customary"}: This is the standard random intercept model that assumes a common within-group variance.
+
+}
+}
+\note{
+The prior distribution, i.e., \code{prior_scale}, is set to \code{1}. This only makes sense
+      given the data used in \insertCite{williams2019putting;textual}{vICC} was reaction times
+      on the seconds scale. This should certainly be changed and great care is needed when
+      specifying this prior, especially when using Bayesian testing (\code{pick_group} and \code{pick_tau}).
+      For those not familiar with Bayesian methods, it can be set to a large value when using
+      \code{pick_none} which focuses on estimation rather than testing.
+}
 \examples{
 \donttest{
 
