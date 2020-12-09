@@ -39,7 +39,7 @@ a one-way random effects model, $\sigma^2_w$ is essentially the $average$ within
 However, if there are group-level differences in $\sigma^2_w$, this implies that there is
 group-level variation in the ICC. 
 
-The methodology in R package **vICC** was specifically designed
+The methodology in the R package **vICC** was specifically designed
 to quantify variation in ICC(1) by allowing $\sigma^2_w$ to vary. This can be used to 
 indentify groups that are more (or less) homogeneous, as well as which groups are adequately 
 described by Equation \eqref{eq:1}. There is currently no software for
@@ -52,7 +52,7 @@ this purpose.
 The **vICC** package can be used to: 
 
 * Obtain posterior probabilities that each group shares a 
-  common within-group variance (i.e., $\sigma^2_w$ in Equation \eqref{eq:1}). This is accomplished
+  common within-group variance (i.e., $\sigma^2_w$ in Equation \ref{eq:1}). This is accomplished
   with a spike-and-slab approach for Bayesian hypothesis testing [a review is provided in @OHara2009].
   
 * Test for between-group differences in $\sigma^2_w$. This is also accomplished with a spike-and-slab     
@@ -79,10 +79,7 @@ The following models are in **vICC**:
     This model has a spike and slab on the random effects standard
     deviation in the scale model which captures between-group
     variability in the within-group variances. This provides a PIP that
-    there is variation in the within-group variances. In the context of
-    reliability, a large PIP indicates that measurement invariance does
-    not hold, given there are group-level differences in so-called
-    measurement error.
+    there is variation in the within-group variances.
 
 3.  `pick_none`:
     
@@ -93,7 +90,7 @@ The following models are in **vICC**:
 
 4.  `customary`:
     
-    This is the standard random intercept model that assumes a common
+    This is the standard random intercepts model that assumes a common
     within-group variance.
 
 Note that options 1 and 2 provide Bayesian model averaged estimates for
