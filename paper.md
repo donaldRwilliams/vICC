@@ -42,16 +42,66 @@ group-level variation in the ICC.
 The methodolgy in R package **vICC** was specifically designed
 to quantify variation in ICC(1) by allowing $\sigma^2_w$ to vary. This can be used to 
 indenty groups that are more (or less) homogenous, as well as which groups are adequately 
-described by Equation \eqref{eq:1}.
+described by Equation \eqref{eq:1}. There is no software currently available for
+this purpose.
 
 
 
 
 # Statement of Need
-The purpose of the **vICC** package is to: 
+The **vICC** package can be used to: 
 
-* Allow users to obtain posterior probabilities that each group shares a 
-  common within-group variance (i.e., $\sigma^2_w$ in \eqref{eq:1}). This is accomplished
-  with a spike-and-slab approach for Bayesian hypothesis testing.
+* Obtain posterior probabilities that each group shares a 
+  common within-group variance (i.e., $\sigma^2_w$ in Equation \eqref{eq:1}). This is accomplished
+  with a spike-and-slab approach for Bayesian hypothesis testing (X).
+  
+* Test for between-group differences in $\sigma^2_w$. This is also accomplished with a spike-and-slab     
+  formulation (X).
 
+* Compute group-specific ICCs, that is the correlation for any two observations from the same group, and  
+  ICC(2), that is average score reliability. Both ICC(1) and ICC(2) are reliability indices.
+  
+Additionally, there are plotting capabilitie using the R package **ggplot2** (X).
+
+# Software and Methodology
+
+The following models are in **vICC**:
+
+1.  `pick_group`:
+    
+    This model has a spike and slab on the random intercepts for the
+    within-group variance. This provides posterior inclusion
+    probabilities (PIP) that each group (e.g., person) does not belong
+    to the common within-group variance model.
+
+2.  `pick_tau`:
+    
+    This model has a spike and slab on the random effects standard
+    deviation in the scale model which captures between-group
+    variability in the within-group variances. This provides a PIP that
+    there is variation in the within-group variances. In the context of
+    reliability, a large PIP indicates that measurement invariance does
+    not hold, given there are group-level differences in so-called
+    measurement error.
+
+3.  `pick_none`:
+    
+    This model also provides group-specific reliability, but there is no
+    spike and slab formulation. This is perhaps ideal for those not
+    familiar with Bayesian testing, but would still like to compute
+    varying ICCs.
+
+4.  `customary`:
+    
+    This is the standard random intercept model that assumes a common
+    within-group variance.
+
+Note that options 1 and 2 provide Bayesian model averaged estimates for
+the ICCs.
+
+# Conclusion
+
+# Acknowledgements
+
+# References
 
