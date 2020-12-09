@@ -53,15 +53,15 @@ The **vICC** package can be used to:
 
 * Obtain posterior probabilities that each group shares a 
   common within-group variance (i.e., $\sigma^2_w$ in Equation \eqref{eq:1}). This is accomplished
-  with a spike-and-slab approach for Bayesian hypothesis testing (X).
+  with a spike-and-slab approach for Bayesian hypothesis testing [a review is provided in @OHara2009].
   
 * Test for between-group differences in $\sigma^2_w$. This is also accomplished with a spike-and-slab     
-  formulation (X).
+  formulation.
 
 * Compute group-specific ICCs, that is the correlation for any two observations from the same group, and  
   ICC(2), that is average score reliability. Both ICC(1) and ICC(2) are reliability indices.
   
-Additionally, there are plotting capabilities using the R package **ggplot2** (X).
+Additionally, there are plotting capabilities using the R package **ggplot2** [@ggplotpackage].
 
 # Methodology
 
@@ -97,11 +97,12 @@ The following models are in **vICC**:
     within-group variance.
 
 Note that options 1 and 2 provide Bayesian model averaged estimates for
-the ICCs. The model formulations are provided in X
+the ICCs. The model formulations are provided in @williams2019putting.
 
 
 ## Implementation
-The following estimates the `pick_group` model for reaction times from a cognitive task (X).
+The following estimates the `pick_group` model for reaction times from a cognitive task 
+[@hedge2018reliability].
 
 ```
 # congruent trials
@@ -129,7 +130,7 @@ The posterior inclusion probabilities are then plotted with `plot(pip(fit))`.
 
 ![Posterior Inclusion Probabilities](man/figures/pip_joss.png)
 
-Figure 1: Posterior inclusion probabilities for each group that provides the evidence 
+Figure 1: Posterior inclusion probabilities for each group that provide the evidence 
 for differing from the average within-group variance.
 
 The group-level ICCs are plotted with
@@ -154,7 +155,7 @@ plots for the means (`plot_mean`), standard deviations(`plot_sd`), ICC(2) (`plot
 
 
 # Conclusion
-The **vICC** package allows researchers to investigate variability in intraclass correlation coefficients.
+The **vICC** package allows researchers to investigate variability in the intraclass correlation coefficient.
 In the future, the suite of models will be expanded to allow for partitioning the variance among several
 grouping variables.
 
