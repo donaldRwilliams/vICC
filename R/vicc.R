@@ -24,9 +24,9 @@
 #'                    (defaults to \code{1}). Note the prior is a
 #'                    half student-t distribution with 10 degrees of freedom.
 #'
-#' @param prior_prob Numeric. The prior inclusion probability (defaults to \code{0.5}). This
-#'                   is used for \code{type = "pick_tau"} or \code{type = "pick_group"} and ignored
-#'                   otherwise.
+#' @param prior_prob Numeric. The prior inclusion probability (defaults to \code{0.5}).
+#'                   This is used for \code{type = "pick_tau"} or \code{type = "pick_group"}
+#'                   and ignored otherwise.
 #'
 #' @details
 #'
@@ -57,7 +57,7 @@
 #'       on the seconds scale. This should certainly be changed and great care is needed when
 #'       specifying this prior, especially when using Bayesian testing (\code{pick_group} and \code{pick_tau}).
 #'       For those not familiar with Bayesian methods, it can be set to a large value when using
-#'       \code{pick_none} which focuses on estimation rather than testing.
+#'       \code{pick_none} or \code{customary} which focuses on estimation rather than testing.
 #'
 #' @references
 #' \insertAllCited{}
@@ -95,7 +95,6 @@ vicc <- function(y, group,
                  prior_prob = 0.5){
 
   # outcome
-  y <- y
   N <- length(y)
   # groups
   ID <- group
@@ -115,7 +114,8 @@ vicc <- function(y, group,
           J = J,
           N = N,
           prior_scale = prior_scale,
-          inc_prob = prior_prob
+          inc_prob = prior_prob,
+          mean_start = mean(y)
         )
       )
 
@@ -145,7 +145,8 @@ vicc <- function(y, group,
         J = J,
         N = N,
         prior_scale = prior_scale,
-        inc_prob = prior_prob
+        inc_prob = prior_prob,
+        mean_start = mean(y)
       )
     )
 

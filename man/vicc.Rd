@@ -37,9 +37,9 @@ described in \code{Details}.}
 (defaults to \code{1}). Note the prior is a
 half student-t distribution with 10 degrees of freedom.}
 
-\item{prior_prob}{Numeric. The prior inclusion probability (defaults to \code{0.5}). This
-is used for \code{type = "pick_tau"} or \code{type = "pick_group"} and ignored
-otherwise.}
+\item{prior_prob}{Numeric. The prior inclusion probability (defaults to \code{0.5}).
+This is used for \code{type = "pick_tau"} or \code{type = "pick_group"}
+and ignored otherwise.}
 }
 \value{
 An object of class \code{vicc}.
@@ -77,7 +77,7 @@ The prior distribution, i.e., \code{prior_scale}, is set to \code{1}. This only 
       on the seconds scale. This should certainly be changed and great care is needed when
       specifying this prior, especially when using Bayesian testing (\code{pick_group} and \code{pick_tau}).
       For those not familiar with Bayesian methods, it can be set to a large value when using
-      \code{pick_none} which focuses on estimation rather than testing.
+      \code{pick_none} or \code{customary} which focuses on estimation rather than testing.
 }
 \examples{
 \donttest{

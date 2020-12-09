@@ -100,8 +100,8 @@ ICC_pick_tau <- "model{
 
 
     # fixed effects priors
-    fe_mu ~ dnorm(0, 1)
-    fe_sd ~ dnorm(0, 1)
+    fe_mu ~ dnorm(mean_start, 0.0001)
+    fe_sd ~ dnorm(0, 0.0001)
 
     # random effects priors
     tau_mu ~ dgamma(1.0E-4,1.0E-4)
@@ -150,8 +150,8 @@ y[i] ~ dnorm(beta_l[ID[i]], 1/exp(beta_s[ID[i]])^2)
 
 
 # fixed effects priors
-fe_mu ~ dnorm(0, 1)
-fe_sd ~ dnorm(0, 1)
+fe_mu ~ dnorm(mean_start, 0.0001)
+fe_sd ~ dnorm(0, 0.0001)
 
 # random effects priors
 tau_mu ~   dt(0, pow(prior_scale,-2), 10)T(0,)
