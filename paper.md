@@ -41,10 +41,17 @@ group-level variation in the ICC.
 
 The methodolgy in R package **vICC** was specifically designed
 to quantify variation in ICC(1) by allowing $\sigma^2_w$ to vary. This can be used to 
-indentying groups that are more (or less) homogenous, as well as which groups are adequately 
+indenty groups that are more (or less) homogenous, as well as which groups are adequately 
 described by Equation \eqref{eq:1}.
 
 
 
 
 # Statement of Need
+The purpose of the **vICC** package is to: 
+
+* Allow users to obtain posterior probabilities that each group shares a 
+  common within-group variance (i.e., $\sigma^2_w$ in \eqref{eq:1}). This is accomplished
+  with a spike-and-slab approach for Bayesian hypothesis testing.
+
+
