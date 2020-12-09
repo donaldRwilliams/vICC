@@ -101,11 +101,36 @@ the ICCs. The model formulations are provided in X
 
 
 ## Implementation
-The following estimates the `pick_group` model for reaction times from a congnitve task (X).
+The following estimates the `pick_group` model for reaction times from a cognitve task (X).
+
+```
+# congruent trials
+congruent <- subset(flanker, cond == 0)
 
 
-![secuTrialR information flow](man/figures/pip.png)
+# subset 25 from each group
+dat <- congruent[unlist(tapply(1:nrow(congruent), 
+                               congruent$id, 
+                               head, 25)), ]
 
+# fit model
+fit <- vicc(
+  y  = dat$rt,
+  group = dat$id,
+  chains = 2,
+  iter = 500,
+  burnin = 10,
+  type =  "pick_group"
+)
+```
+
+The posterior inclusion probabilites are then plotted with `plot(pip(fit))`.
+
+
+
+![Posterior Inclusion Probabilities](man/figures/pip_joss.png)
+Figure 1: Posterior inclusion probabilities for each group that provides the evidence 
+for differing from the average within-group variance.
 # Conclusion
 
 # Acknowledgements
