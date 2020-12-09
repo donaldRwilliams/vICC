@@ -58,8 +58,9 @@ with a spike-and-slab approach for Bayesian hypothesis testing [a review is prov
 * Test for between-group differences in $\sigma^2_w$. This is also accomplished with a spike-and-slab     
 formulation.
 
-* Compute group-specific ICCs, that is the correlation for any two observations from the same group, and  
-ICC(2), that is average score reliability. Both ICC(1) and ICC(2) are reliability indices.
+* Compute group-specific ICCs, that is the correlation for any two 
+observations from the same group, and  ICC(2), that is average score reliability. 
+Both ICC(1) and ICC(2) are reliability indices.
   
 Additionally, there are plotting capabilities using the R package **ggplot2** [@ggplotpackage].
 
