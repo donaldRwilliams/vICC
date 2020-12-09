@@ -27,11 +27,11 @@ there are a wide spectrum of applications, an underlying assumption is that the
 variance components used in their computation are fixed and non-varying. Consider
 the case of ICC(1), that is,
 
-$$
+
 \begin{align}
 \text{ICC(1)} = \frac{\sigma^2_b}{\sigma^2_b + \sigma^2_w}
 \end{align}
-$$
+
 
 where $\sigma^2_b$ is the between-group variance and $\sigma^2_w$ the within-group variance. In
 a one-way random effects model, $\sigma^2_w$ is essentially the $average$ within-group variance. 
