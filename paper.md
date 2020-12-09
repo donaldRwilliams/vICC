@@ -28,7 +28,7 @@ variance components used in their computation are fixed and non-varying. Conside
 the case of ICC(1), that is,
 
 $$
-\frac{\sigma_2_b}{\sigma_2_b + \sigma_2_w}
+\frac{\sigma^2_b}{\sigma^2_b + \sigma^2_w}
 $$
 
 which is computed from a one-way random effects model.
