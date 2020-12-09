@@ -63,7 +63,7 @@ The **vICC** package can be used to:
   
 Additionally, there are plotting capabilitie using the R package **ggplot2** (X).
 
-# Software and Methodology
+# Methodology
 
 The following models are in **vICC**:
 
@@ -97,7 +97,14 @@ The following models are in **vICC**:
     within-group variance.
 
 Note that options 1 and 2 provide Bayesian model averaged estimates for
-the ICCs.
+the ICCs. The model formulations are provided in X
+
+
+## Implementation
+The following estimates the `pick_group` model for reaction times from a congnitve task (X).
+
+
+![secuTrialR information flow](/man/figures/pip.png)
 
 # Conclusion
 
