@@ -36,7 +36,7 @@ the case of ICC(1), that is,
 
 where $\sigma^2_b$ is the between-group variance and $\sigma^2_w$ the within-group variance. In
 a one-way random effects model, $\sigma^2_w$ is essentially the $average$ within-group variance. 
-However, if there are group-level differences in $\sigma^2_w$, this implies that there also
+However, if there are group-level differences in $\sigma^2_w$, this implies that there is
 group-level variation in the ICC. 
 
 The methodology in R package **vICC** was specifically designed
@@ -145,13 +145,12 @@ plts$plot_icc1 +
 ```
 
 ![ICC1](man/figures/icc1.png)
-Figure 2: Group-level intraclass correlation coefficients.
+Figure 2: Group-level intraclass correlation coefficients. The black line is the customary
+ICC computed with Equation \eqref{eq:1}.
 
 Notice that the object `plts` can be further modified with **ggplot2**. Further, it also includes 
 plots for the means (`plot_mean`), standard deviations(`plot_sd`), ICC(2) (`plot_icc2`).
 
-
-# Conclusion
 
 
 # Conclusion
