@@ -148,7 +148,8 @@ vicc <- function(y, group,
         ID = ID,
         J = J,
         N = N,
-        prior_scale = prior_scale
+        prior_scale = prior_scale,
+        mean_start = mean(y)
       )
     )
 
@@ -174,7 +175,8 @@ vicc <- function(y, group,
         ID = ID,
         J = J,
         N = N,
-        prior_scale = prior_scale
+        prior_scale = prior_scale,
+        mean_start = mean(y)
       )
     )
 

@@ -28,8 +28,8 @@ ICC_lsm <- "model{
 
 
   # fixed effects priors
-  fe_mu ~ dnorm(0, 1)
-  fe_sd ~ dnorm(0, 1)
+  fe_mu ~ dnorm(mean_start, 0.0001)
+  fe_sd ~ dnorm(0, 0.0001)
 
   # random effects priors
   tau_mu ~ dt(0, pow(prior_scale,-2), 10)T(0,)
@@ -63,7 +63,7 @@ for(i in 1:N){
 
 
 # fixed effects priors
-fe_mu ~ dnorm(0, 1)
+fe_mu ~ dnorm(mean_start, 0.001)
 
 # random effects priors
 tau_mu ~ dt(0, pow(prior_scale,-2), 10)T(0,)
