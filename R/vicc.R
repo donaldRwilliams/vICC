@@ -94,7 +94,6 @@ vicc <- function(y, group,
                  prior_scale = 1,
                  prior_prob = 0.5){
 
-
   # outcome
   y <- y
   N <- length(y)
