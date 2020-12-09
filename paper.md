@@ -29,6 +29,7 @@ the case of ICC(1), that is,
 
 
 \begin{align}
+\label{eq:1}
 \text{ICC(1)} = \frac{\sigma^2_b}{\sigma^2_b + \sigma^2_w}
 \end{align}
 
@@ -36,10 +37,12 @@ the case of ICC(1), that is,
 where $\sigma^2_b$ is the between-group variance and $\sigma^2_w$ the within-group variance. In
 a one-way random effects model, $\sigma^2_w$ is essentially the $average$ within-group variance. 
 However, if there are group-level differences in $\sigma^2_w$, this implies that there also
-group-level variation in the ICC. The methodolgy in R package **vICC** was specifically designed
+group-level variation in the ICC. 
+
+The methodolgy in R package **vICC** was specifically designed
 to quantify variation in ICC(1) by allowing $\sigma^2_w$ to vary. This can be used to 
 indentying groups that are more (or less) homogenous, as well as which groups are adequately 
-described by the customary ICC
+described by Equation \eqref{eq:1}.
 
 
 
