@@ -104,7 +104,7 @@ the ICCs. The model formulations are provided in X
 The following estimates the `pick_group` model for reaction times from a congnitve task (X).
 
 
-![secuTrialR information flow](/man/figures/pip.png)
+![secuTrialR information flow](man/figures/pip.png)
 
 # Conclusion
 
