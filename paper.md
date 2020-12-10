@@ -41,7 +41,7 @@ group-level variation in the ICC.
 
 The methodology in the R package **vICC** was specifically designed
 to quantify variation in ICC(1) by allowing $\sigma^2_w$ to vary. This can be used to 
-indentify groups that are more (or less) homogeneous, as well as which groups are adequately 
+identify groups that are more (or less) homogeneous, as well as which groups are adequately 
 described by Equation \eqref{eq:1}. There is currently no software for
 this purpose.
 
