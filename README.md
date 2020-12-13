@@ -238,6 +238,7 @@ and `citation("vICC")` when stating the software used in the work.
 Williams, Donald R, Stephen R Martin, and Philippe Rast. 2019. “Putting
 the Individual into Reliability: Bayesian Testing of Homogeneous
 Within-Person Variance in Hierarchical Models.” *PsyArXiv*.
+<https://doi.org/10.31234/osf.io/hpq7w>.
 
 </div>
 

@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 
 The goal of vICC is to compute varying intraclass correlation coefficients (ICC) in a one-way random
-effects model (i.e., a random intercepts only model). Often computing an ICC is the first step
+effects model (i.e., a random intercepts only model). Often computing the ICC is the first step
 when fitting a mixed-effects (a.k.a., hierarchical, multilevel, etc.) model that results in *merely* 
 one value that is assumed to apply to each group (e.g., person, school, etc.). The underlying assumption
 is a common within-group variance, whereas, in **vICC**, a random-effects model is fitted to 
